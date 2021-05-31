@@ -11,6 +11,7 @@ import java.util.List;
 import com.douzone.mysite.vo.GuestbookVo;
 
 public class GuestbookRepository {
+	
 	public List<GuestbookVo> findAll() {
 		List<GuestbookVo> list = new ArrayList<>();
 		
@@ -21,25 +22,21 @@ public class GuestbookRepository {
 		try {
 			conn = getConnection();
 			
-			String sql =
-				"   select no, name, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as reg_date, message" +
-				"     from guestbook" +
-				" order by reg_date desc";
+			String sql = "select no, name, password,date_format(regdate,'%Y-%m-%d'), message"
+					+ "		from guestbook"
+					+ "		order by no desc";
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Long no = rs.getLong(1);
-				String name = rs.getString(2);
-				String regDate = rs.getString(3);
-				String message = rs.getString(4);
-				
 				GuestbookVo vo = new GuestbookVo();
-				vo.setNo(no);
-				vo.setName(name);
-				vo.setRegDate(regDate);
-				vo.setMessage(message);
+				
+				vo.setNo(rs.getLong(1));
+				vo.setName(rs.getString(2));
+				vo.setPassword(rs.getString(3));
+				vo.setRegDate(rs.getString(4).toString());
+				vo.setMessage(rs.getString(5));
 				
 				list.add(vo);
 			}
