@@ -102,7 +102,7 @@ public class UserRepository {
 		Connection conn = null;
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			String url = "jdbc:mysql://192.168.80.101:3307/webdb?characterEncoding=utf8";
+			String url = "jdbc:mysql://127.0.0.1:3306/webdb?characterEncoding=utf8";
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패:" + e);

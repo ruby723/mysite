@@ -1,4 +1,4 @@
-package com.douzone.mvc.util;
+package com.douzone.web.util;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class MvcUtils {
 		rd.forward(request, response);
 	}
 
-	public static void redirect(String url,HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
+	public static void redirect(String url,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect(url);
 	}
 

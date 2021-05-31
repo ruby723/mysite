@@ -1,7 +1,7 @@
-package com.douzone.mysite.mvc.main;
+package com.douzone.mysite.web.main;
 
-import com.douzone.mvc.Action;
-import com.douzone.mvc.ActionFactory;
+import com.douzone.web.Action;
+import com.douzone.web.ActionFactory;
 
 public class MainActionFactory extends ActionFactory {
 

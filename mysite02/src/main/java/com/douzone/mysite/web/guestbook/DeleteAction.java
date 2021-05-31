@@ -1,4 +1,4 @@
-package com.douzone.mysite.mvc.guestbook;
+package com.douzone.mysite.web.guestbook;
 
 import java.io.IOException;
 
@@ -6,10 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.douzone.mvc.Action;
-import com.douzone.mvc.util.MvcUtils;
 import com.douzone.mysite.repository.GuestbookRepository;
 import com.douzone.mysite.vo.GuestbookVo;
+import com.douzone.web.Action;
+import com.douzone.web.util.MvcUtils;
 
 public class DeleteAction implements Action {
 	@Override
