@@ -17,10 +17,10 @@
 				<form id="join-form" name="joinForm" method="post" action="${pageContext.request.contextPath }/user">
 					<input type="hidden" name="a" value="update" />
 					<label class="block-label" for="name">이름</label>
-					<input id="name" name="name" type="text" value="">
+					<input id="name" name="name" type="text" value=""><br>
 
 					<label class="block-label" for="email">이메일</label>
-					<h4>kickscar@gmail.com</h4>
+					<input name="email" type="email" value=""><br>
 					
 					<label class="block-label">패스워드</label>
 					<input name="password" type="password" value="">

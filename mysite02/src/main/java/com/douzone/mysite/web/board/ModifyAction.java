@@ -11,7 +11,7 @@ import com.douzone.mysite.vo.BoardVo;
 import com.douzone.web.Action;
 import com.douzone.web.util.MvcUtils;
 
-public class ViewAction implements Action {
+public class ModifyAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,11 +21,8 @@ public class ViewAction implements Action {
 
 		BoardVo vo = new BoardRepository().findByNo(no);
 		
-		vo.setHit(vo.getHit()+1);
-		new BoardRepository().updateHit(vo);
-		
 		request.setAttribute("vo", vo);
-		MvcUtils.forward("board/view", request, response);
+		MvcUtils.forward("board/modify", request, response);
 	}
 
 }

@@ -11,7 +11,23 @@ public class BoardActionFactory extends ActionFactory {
 		
 		if("view".equals(actionName)) {
 			action = new ViewAction();
-		}else { // default Action
+		}else if("write".equals(actionName)) {
+			action =  new WriteAction();
+		}else if("add".equals(actionName)){
+			action = new AddAction();			
+		}else if("modify".equals(actionName)){
+			action = new ModifyAction();
+		}else if("update".equals(actionName)){
+			action = new UpdateAction();
+		}else if("comment".equals(actionName)){
+			action = new CommentAction();
+		}else if("commentadd".equals(actionName)){
+			action = new CommentAddAction();
+		}else if("delete".equals(actionName)){
+			action = new DeleteAction();
+		}else if("p".equals(actionName)){
+			action = new DeleteAction();
+		}else {// default Action
 			action = new ListAction();
 		}
 		

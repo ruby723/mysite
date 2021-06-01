@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import com.douzone.mysite.vo.UserVo;
 
 public class UserRepository {
+	
 	public boolean insert(UserVo vo) {
 		boolean result = false;
 

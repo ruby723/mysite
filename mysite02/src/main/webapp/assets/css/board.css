@@ -96,7 +96,7 @@ div.bottom {
 
 div.bottom a { 
 	text-decoration:none; 
-	dispaly:block;
+	display:block;
 }
 
 a#new-book	 { 
@@ -132,9 +132,6 @@ a.del	{
 	font-size:0;
 }
 
-/*
-	게시판 리스트 페이징
-*/
 div.pager {
 	width:100%;
 	text-align:center;
