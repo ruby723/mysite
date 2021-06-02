@@ -54,14 +54,18 @@
 				<div class="pager">
 					<ul>
 						<li><a href="${pageContext.servletContext.contextPath }/board?p=${prevPageNo}">◀</a></li>
-						<li><a href="/mysite02/board?p=1">1</a></li>
-						<li class="selected">2</li>
-						<li><a href="/mysite02/board?p=3">3</a></li>
-						<li>4</li>
-						<li>5</li>
+
+						<c:forEach begin="${firstPageNo }" end="${lastPageNo }" step="1" varStatus="i">
+							<c:choose>
+								<c:when test='${i.count+firstPageNo-1 > lastPageNo }'></c:when>
+								<c:when test='${i.count+firstPageNo-1 == currentPageNo }'><li class="selected"><a href="${pageContext.servletContext.contextPath }/board?p=${i.count+firstPageNo-1}">${i.count+firstPageNo-1}</a></li></c:when>
+								<c:otherwise><li><a href="${pageContext.servletContext.contextPath }/board?p=${i.count+firstPageNo-1}">${i.count+firstPageNo-1}</a></li></c:otherwise>
+							</c:choose>
+   							
+						</c:forEach>
 						<li><a href="${pageContext.servletContext.contextPath }/board?p=${nextPageNo}">▶</a></li>
 					</ul>
-				</div>					
+				</div>				
 				<!-- pager 추가 -->
 				
 				<div class="bottom">
