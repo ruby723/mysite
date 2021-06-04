@@ -24,3 +24,12 @@ mysite 03 : java spring 을 사용한 홈페이지
 **Day 4**
 - board게시판에 글쓰기, 글 수정, 답글달기가 가능합니다.
 - 사용자가 자신이 쓴 글을 삭제할 수 있습니다.
+
+**Day 5**
+- spring을 이용하여 main과 guestbook을 구현하였습니다.
+-  guestbook구현은 mvc 패턴을 사용했습니다.
+
+**Day 6**
+- mvc 패턴을 사용하여 user 부분을 수정하였습니다.
+- database를 mybatis를 사용하여 guestbook, user xml파일을 만들어 사용했습니다.
+- 회원가입, 로그인, 정보수정 부분을 수정하여 구현하였습니다.
