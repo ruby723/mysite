@@ -15,7 +15,7 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="guestbook">
-				<form action="${pageContext.request.contextPath }/guestbook?a=insert" method="post">
+				<form action="${pageContext.request.contextPath }/guestbook/insert" method="post">
 					<input type="hidden" name="a" value="add">
 					<table>
 						<tr>
@@ -40,7 +40,7 @@
 									<td>[${count-status.index }]</td>
 									<td>${vo.name }</td>
 									<td>${vo.regDate }</td>
-									<td><a href="${pageContext.request.contextPath }/guestbook?a=deleteform&no=${vo.no }">삭제</a></td>
+									<td><a href="${pageContext.request.contextPath }/guestbook/deleteform/${vo.no }">삭제</a></td>
 								</tr>
 								<tr>
 									<td colspan=4>

@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.douzone.mysite.exception.GuestbookRepositoryException;
 import com.douzone.mysite.vo.GuestbookVo;
 
 @Repository
@@ -45,7 +46,7 @@ public class GuestbookRepository {
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("error:" + e);
+			throw new GuestbookRepositoryException(e.getMessage());
 		} finally {
 			try {
 				if(rs != null) {
@@ -58,14 +59,14 @@ public class GuestbookRepository {
 					conn.close();
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new GuestbookRepositoryException(e.getMessage());
 			}
 		}
 		
 		return list;
 	}
 	
-	public boolean delete(GuestbookVo vo) {
+	public boolean delete(Long no, String password) {
 		boolean result = false;
 
 		Connection conn = null;
@@ -80,8 +81,8 @@ public class GuestbookRepository {
 					"    and password=?";
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setLong(1, vo.getNo());
-			pstmt.setString(2, vo.getPassword());
+			pstmt.setLong(1, no);
+			pstmt.setString(2, password);
 			
 			int count = pstmt.executeUpdate();
 			result = count == 1;

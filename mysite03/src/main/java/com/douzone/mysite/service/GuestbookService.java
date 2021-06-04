@@ -10,6 +10,7 @@ import com.douzone.mysite.vo.GuestbookVo;
 
 @Service
 public class GuestbookService {
+	
 	@Autowired
 	GuestbookRepository guestbookRepository; //	의존성 문제 해결
 	
@@ -17,12 +18,15 @@ public class GuestbookService {
 		return guestbookRepository.findAll();
 	}
 	
-	
 	public void deleteMessage(Long no, String password) {
+		GuestbookVo vo = new GuestbookVo();
+		vo.setNo(no);
+		vo.setPassword(password);
 		
+		guestbookRepository.delete(no,password);
 	}
 	
 	public void insertMessage(GuestbookVo vo) {
-		
+		guestbookRepository.insert(vo);
 	}
 }
