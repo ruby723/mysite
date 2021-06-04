@@ -1,5 +1,7 @@
 # mysite
-Servlet - jsp를 사용하여 홈페이지를 제작합니다.
+Java언어를 사용하여 홈페이지를 제작합니다.
+mysite 02 : jsp-servlet 을 사용한 홈페이지 제작
+mysite 03 : java spring 을 사용한 홈페이지 
 
 
 **DAY 1**
