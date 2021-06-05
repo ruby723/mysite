@@ -23,7 +23,7 @@
 						Java + 데이터베이스 + JSP-sevlet 으로 만들었습니다.
 						아직까지 게시판은 미완성이에요;;
 						<br><br>
-						<a href="#">방명록</a>에 글 남기기<br>
+						<a href="${pageContext.request.contextPath }/guestbook">방명록</a>에 글 남기기<br>
 					</p>
 				</div>
 			</div>
