@@ -37,13 +37,13 @@
 									<img src="${pageContext.servletContext.contextPath }/assets/images/reply.png" />
 								</c:when>
 							</c:choose>
-							<a href="${pageContext.servletContext.contextPath }/board?a=view&no=${vo.no}">${vo.title }</a></td>
+							<a href="${pageContext.servletContext.contextPath }/board/view/${vo.no}">${vo.title }</a></td>
 							<td>${vo.userName }</td>
 							<td>${vo.hit }</td>
 							<td>${vo.regDate }</td>
 							<c:choose>
 								<c:when test='${authUser.no==vo.userNo }'>
-							<td><a href="" class="del" style='background-image:url("${pageContext.servletContext.contextPath }/assets/images/recycle.png")'>삭제</a></td>
+							<td><a href="${pageContext.servletContext.contextPath }/board/delete/${vo.no}" class="del"><img src="${pageContext.servletContext.contextPath }/assets/images/recycle.png" /></a></td>
 								</c:when>
 							</c:choose>
 						</tr>
@@ -53,23 +53,23 @@
 				<!-- pager 추가 -->
 				<div class="pager">
 					<ul>
-						<li><a href="${pageContext.servletContext.contextPath }/board?p=${prevPageNo}">◀</a></li>
+						<li><a href="${pageContext.servletContext.contextPath }/board/p/${prevPageNo}">◀</a></li>
 
 						<c:forEach begin="${firstPageNo }" end="${lastPageNo }" step="1" varStatus="i">
 							<c:choose>
 								<c:when test='${i.count+firstPageNo-1 > lastPageNo }'></c:when>
-								<c:when test='${i.count+firstPageNo-1 == currentPageNo }'><li class="selected"><a href="${pageContext.servletContext.contextPath }/board?p=${i.count+firstPageNo-1}">${i.count+firstPageNo-1}</a></li></c:when>
-								<c:otherwise><li><a href="${pageContext.servletContext.contextPath }/board?p=${i.count+firstPageNo-1}">${i.count+firstPageNo-1}</a></li></c:otherwise>
+								<c:when test='${i.count+firstPageNo-1 == currentPageNo }'><li class="selected"><a href="${pageContext.servletContext.contextPath }/board/p/${i.count+firstPageNo-1}">${i.count+firstPageNo-1}</a></li></c:when>
+								<c:otherwise><li><a href="${pageContext.servletContext.contextPath }/board/p/${i.count+firstPageNo-1}">${i.count+firstPageNo-1}</a></li></c:otherwise>
 							</c:choose>
    							
 						</c:forEach>
-						<li><a href="${pageContext.servletContext.contextPath }/board?p=${nextPageNo}">▶</a></li>
+						<li><a href="${pageContext.servletContext.contextPath }/board/p/${nextPageNo}">▶</a></li>
 					</ul>
 				</div>				
 				<!-- pager 추가 -->
 				
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/board?a=write" id="new-book">글쓰기</a>
+					<a href="${pageContext.request.contextPath }/board/write" id="new-book">글쓰기</a>
 				</div>				
 			</div>
 		</div>

@@ -4,9 +4,11 @@
 	<typeAliases>
 		<typeAlias type = "com.douzone.mysite.vo.GuestbookVo" alias="guestbookvo"></typeAlias>
     	<typeAlias type = "com.douzone.mysite.vo.UserVo" alias="uservo"></typeAlias>
+    	<typeAlias type = "com.douzone.mysite.vo.BoardVo" alias="boardvo"></typeAlias>
     </typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/guestbook.xml" />
 		<mapper resource="mybatis/mappers/user.xml" />
+		<mapper resource="mybatis/mappers/board.xml" />
 	</mappers>
 </configuration>
