@@ -10,21 +10,20 @@ import com.douzone.mysite.vo.UserVo;
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	public void join(UserVo vo) {
 		userRepository.insert(vo);
 	}
-	
+
 	public UserVo getUser(String email, String password) {
-		return userRepository.findByEmailAndPassword(email,password);
+		return userRepository.findByEmailAndPassword(email, password);
 	}
 
 	public UserVo getUser(Long no) {
 		return userRepository.findByNo(no);
 	}
-	
-	public UserVo updateUser(UserVo userVo) {
-		return userRepository.update(userVo);
-	}
 
+	public void updateUser(UserVo userVo) {
+		userRepository.update(userVo);
+	}
 }

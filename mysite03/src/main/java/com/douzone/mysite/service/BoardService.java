@@ -31,7 +31,28 @@ public class BoardService {
 		boardRepository.insert(vo);
 	}
 	
+	public void modify(BoardVo vo) {
+		//System.out.println(vo);
+		boardRepository.modify(vo);
+	}
+	
+	public void update(BoardVo vo) {
+		boardRepository.update(vo);
+	}
+	
+	public int maxGroup() {
+		return boardRepository.maxGroup();
+	}
+	
+	public int count() {
+		return boardRepository.count();
+	}
+	
 	public BoardVo findbyNo(Long no) {
 		return boardRepository.findbyNo(no);
+	}
+	
+	public void updateHit(BoardVo vo) {
+		boardRepository.updateHit(vo);
 	}
 }

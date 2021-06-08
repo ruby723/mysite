@@ -15,14 +15,14 @@ public class BoardRepository {
 	private SqlSession sqlSession;
 	
 	public boolean insert(BoardVo vo) {
-
-		int count= sqlSession.insert("board.insert");
+		
+		int count= sqlSession.insert("board.insert",vo);
 		return count==1;
 	}
 	
 	public boolean modify(BoardVo vo) {
-
-		int count = sqlSession.update("board.modify");
+		//System.out.println(vo);
+		int count = sqlSession.update("board.modify",vo);
 		return count ==1;
 	}
 	
@@ -47,22 +47,22 @@ public class BoardRepository {
 		return count ==1 ;
 	}
 	
-	public BoardVo findbyNo(long num) {
+	public BoardVo findbyNo(Long no) {
 		
-		return (BoardVo)sqlSession.selectList("board.findbyNo");
+		return sqlSession.selectOne("board.findbyNo",no);
 	}	
 	
 	public List<BoardVo> findAll() {
 		
 		List<BoardVo> list = sqlSession.selectList("board.findAll");
-		System.out.println(list);
+		//System.out.println(list);
 		return list;
 	}
 	
 	public boolean delete(BoardVo vo) {
 
 		int count=sqlSession.delete("board.delete",vo);
-		System.out.println(vo);
+		// System.out.println(vo);
 		return count==1;
 	}
 }

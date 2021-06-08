@@ -8,9 +8,10 @@
 		]]>
 	</insert>
 	
-	<select id="findbyNo" parameterType="boardvo" resultType="boardvo">
+	<select id="findbyNo" parameterType="long" resultType="boardvo">
 		<![CDATA[
-		select a.no, a.title, a.contents, a.dept, a.hit, a.reg_date,a.group_no, a.order_no, b.no, b.name
+		select a.no, a.title, a.contents,a.reg_date as regDate,a.hit,a.group_no as groupNo, 
+		a.order_no as orderNo, a.dept as depth, b.no as userNo, b.name as userName
 		from board a, user b
 		where b.no=a.user_no and a.no=#{no}
 		]]>
@@ -24,7 +25,8 @@
 	
 	<select id="findAll" resultType="boardvo">
 		<![CDATA[
-		select a.no, a.title, a.contents,a.reg_date,a.hit,a.group_no, a.order_no, a.dept, b.no, b.name
+		select a.no, a.title, a.contents,a.reg_date as regDate,a.hit,a.group_no as groupNo, 
+		a.order_no as orderNo, a.dept as depth, b.no as userNo, b.name as userName
 		from board a, user b
 		where a.user_no= b.no order by a.group_no DESC, a.order_no ASC
 		]]>

@@ -35,8 +35,8 @@
 				</table>
 				<div class="bottom">
 					<a href="${pageContext.servletContext.contextPath }/board">글목록</a>
-					<a href="${pageContext.servletContext.contextPath }/board?a=modify&no=${vo.no }">글수정</a>
-					<a href="${pageContext.servletContext.contextPath }/board?a=comment&no=${vo.no}">답글달기</a>
+					<a href="${pageContext.servletContext.contextPath }/board/modify/${vo.no }">글수정</a>
+					<a href="${pageContext.servletContext.contextPath }/board/comment/${vo.no}">답글달기</a>
 				</div>
 			</div>
 		</div>

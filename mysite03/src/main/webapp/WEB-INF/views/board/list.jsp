@@ -37,7 +37,7 @@
 									<img src="${pageContext.servletContext.contextPath }/assets/images/reply.png" />
 								</c:when>
 							</c:choose>
-							<a href="${pageContext.servletContext.contextPath }/board/view/${vo.no}">${vo.title }</a></td>
+							<a  method="post" href="${pageContext.servletContext.contextPath }/board/view/${vo.no}">${vo.title }</a></td>
 							<td>${vo.userName }</td>
 							<td>${vo.hit }</td>
 							<td>${vo.regDate }</td>
@@ -53,9 +53,9 @@
 				<!-- pager 추가 -->
 				<div class="pager">
 					<ul>
-						<li><a href="${pageContext.servletContext.contextPath }/board/p/${prevPageNo}">◀</a></li>
+						<li><a href="${pageContext.servletContext.contextPath }/board/p/${currentPageNo-1}">◀</a></li>
 
-						<c:forEach begin="${firstPageNo }" end="${lastPageNo }" step="1" varStatus="i">
+						<c:forEach begin="${firstPageNo }" end="${lastPageNo}" step="1" varStatus="i">
 							<c:choose>
 								<c:when test='${i.count+firstPageNo-1 > lastPageNo }'></c:when>
 								<c:when test='${i.count+firstPageNo-1 == currentPageNo }'><li class="selected"><a href="${pageContext.servletContext.contextPath }/board/p/${i.count+firstPageNo-1}">${i.count+firstPageNo-1}</a></li></c:when>
@@ -63,7 +63,7 @@
 							</c:choose>
    							
 						</c:forEach>
-						<li><a href="${pageContext.servletContext.contextPath }/board/p/${nextPageNo}">▶</a></li>
+						<li><a href="${pageContext.servletContext.contextPath }/board/p/${currentPageNo+1}">▶</a></li>
 					</ul>
 				</div>				
 				<!-- pager 추가 -->

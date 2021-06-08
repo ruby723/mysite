@@ -13,29 +13,16 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import com.douzone.mysite.vo.UserVo;
 
 public class AuthUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
-
 	@Override
-	public boolean supportsParameter(MethodParameter parameter) {
-		AuthUser authUser = parameter.getParameterAnnotation(AuthUser.class);
-		
-		// @AuthUser가 없으
-		if(authUser == null) {
-			return false;
-		}
-		// 파라미터 타입이 UserVo가 아니라면,
-		if(parameter.getParameterType().equals(UserVo .class) == false) {
-			return false;
-		}
-		return false;
-	}
-
-	@Override
-	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
-			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-		
+	public Object resolveArgument(
+		MethodParameter parameter,
+		ModelAndViewContainer mavContainer,
+		NativeWebRequest webRequest,
+		WebDataBinderFactory binderFactory) throws Exception {
 		if(supportsParameter(parameter) == false) {
 			return WebArgumentResolver.UNRESOLVED;
 		}
+		
 		HttpServletRequest request = (HttpServletRequest)webRequest.getNativeRequest();
 		HttpSession session = request.getSession();
 		if(session == null) {
@@ -44,5 +31,23 @@ public class AuthUserHandlerMethodArgumentResolver implements HandlerMethodArgum
 		
 		return session.getAttribute("authUser");
 	}
+
+	@Override
+	public boolean supportsParameter(MethodParameter parameter) {
+		AuthUser authUser = parameter.getParameterAnnotation(AuthUser.class);
+		
+		// @AuthUser가 안붙어 있으면,
+		if(authUser == null) {
+			return false;
+		}
+		
+		// 파라미터 타입이 UserVo가 아니면,
+		if(parameter.getParameterType().equals(UserVo.class) == false) {
+				return false;
+		}
+		
+		return true;
+	}
+
 
 }

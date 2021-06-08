@@ -14,7 +14,7 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath }/board?a=commentadd">
+				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath }/board/commentadd/${no}">
 					<input type = "hidden" name = "a" value="write">
 					<input type = "hidden" name = "no" value="${no }">
 					<table class="tbl-ex">
@@ -28,7 +28,7 @@
 						<tr>
 							<td class="label">내용</td>
 							<td>
-								<textarea id="content" name="content"></textarea>
+								<textarea id="content" name="contents"></textarea>
 							</td>
 						</tr>
 					</table>
