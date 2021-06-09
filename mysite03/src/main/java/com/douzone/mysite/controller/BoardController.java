@@ -43,7 +43,7 @@ public class BoardController {
 			writelist = list.subList((currentPageNo-1)*5, writeException);
 		}
 		
-		System.out.println(currentPageNo);
+		// System.out.println(currentPageNo);
 		model.addAttribute("list",writelist);
 		model.addAttribute("currentPageNo",currentPageNo);
 		model.addAttribute("firstPageNo",firstPageNo);

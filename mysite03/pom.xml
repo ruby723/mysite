@@ -36,6 +36,13 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<!-- Spring Aspect -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
 		<!-- Spring JDBC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -88,8 +95,11 @@
 			<artifactId>jsp-api</artifactId>
 			<version>2.0</version>
 			<scope>provided</scope>
-		</dependency>			
+		</dependency>
+					
 	</dependencies>
+	
+	
 	<build>
 		<finalName>mysite03</finalName>
 		<plugins>
