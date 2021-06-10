@@ -24,11 +24,11 @@ $(function(){
 			type: "get",
 			dataType: "json",
 			
-			error:fuction(xhr,status,e) {
+			error:function(xhr,status,e) {
 				console.error(status,e);
 			},
 			
-			success:fuction(response) {
+			success:function(response) {
 				console.log(response);
 				
 				if(response.result != "success"){

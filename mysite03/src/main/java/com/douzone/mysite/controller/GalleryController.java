@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.douzone.mysite.security.AuthUser;
 import com.douzone.mysite.service.FileUploadService;
 import com.douzone.mysite.service.GalleryService;
 import com.douzone.mysite.vo.GalleryVo;
+import com.douzone.mysite.vo.UserVo;
 
 @Controller
 @RequestMapping("/gallery")
@@ -33,12 +35,14 @@ public class GalleryController {
 	}
 	
 	@RequestMapping(value = "/upload",method=RequestMethod.POST)
-	public String upload(GalleryVo vo, MultipartFile file) {
+	public String upload(@AuthUser UserVo user, GalleryVo vo, MultipartFile file) {
 		
 		String url = fileUploadService.restore(file);
 		vo.setUrl(url);
 		
-		galleryService.upload(vo);
+		if(user.getRole().equals("ADMIN")) {
+			galleryService.upload(vo);
+		}
 		return "redirect:/gallery";
 	}
 	
