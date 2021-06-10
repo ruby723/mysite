@@ -10,11 +10,33 @@
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!-- auto proxy -->
+	<aop:aspectj-autoproxy />
+	
 	<!-- Validator, conversionService, messageConverter를 자동으로 등록 -->
 	<mvc:annotation-driven>
 		<mvc:argument-resolvers>
 			<bean class="com.douzone.mysite.security.AuthUserHandlerMethodArgumentResolver" />
 		</mvc:argument-resolvers>
+		
+		<mvc:message-converters>
+		<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+			    <property name="supportedMediaTypes">
+			        <list>
+			             <value>text/html; charset=UTF-8</value>
+			        </list>
+			    </property>
+			</bean>
+			
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+			   <property name="supportedMediaTypes">
+			       <list>
+			            <value>application/json; charset=UTF-8</value>
+			        </list>
+			   </property>
+			</bean>
+		</mvc:message-converters>
+		 
 	</mvc:annotation-driven>
 
 	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
@@ -46,6 +68,18 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<!-- Multipart Resolver -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 최대업로드 가능한 바이트크기 -->
+		<property name="maxUploadSize" value="52428800" />
+		<!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할수있는 최대 바이트 크기 -->
+		<!-- property name="maxInMemorySize" value="52428800" /-->
+		<!-- defaultEncoding -->
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>	
+	
+	<!-- mvc resources mapping -->
+	<mvc:resources location="file:/Users/jeongin/uploads-mysite/" mapping="/images/**" />
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.douzone.mysite.controller, com.douzone.mysite.exception" />

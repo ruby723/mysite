@@ -12,6 +12,9 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
+	<!-- auto proxy -->
+	<aop:aspectj-autoproxy />
+
 	<!-- Connection Pool DataSource-->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.douzone.mysite.security.AuthUser;
 import com.douzone.mysite.service.BoardService;
+import com.douzone.mysite.service.SiteService;
 import com.douzone.mysite.vo.BoardVo;
+import com.douzone.mysite.vo.SiteVo;
 import com.douzone.mysite.vo.UserVo;
 
 @Controller
@@ -19,10 +21,11 @@ import com.douzone.mysite.vo.UserVo;
 public class BoardController {
 	@Autowired
 	BoardService boardService;
-
+	
 	@RequestMapping({"","/p/{no}"})
 	public String index(@PathVariable(name="no",required=false)String pageno,Model model) {
 		
+		//paging
 		List<BoardVo> list = boardService.getMessageList();
 		int totalPage = boardService.count();
 		

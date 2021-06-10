@@ -15,13 +15,10 @@
 		<div id="wrapper">
 			<div id="content">
 				<div id="site-introduction">
-					<img id="profile" src="${pageContext.request.contextPath }/assets/images/profile.jpeg" style="width:120px">
-					<h2>안녕하세요. 김정인의 mysite에 오신 것을 환영합니다.</h2>
+					<img id="profile" src="${pageContext.request.contextPath }${vo.profile}" style="width:120px">
+					<h2>${vo.welcome }</h2>
 					<p>
-						이 사이트는 웹 프로그래밍 실습과제 예제 사이트입니다.<br>
-						메뉴는 사이트 소개, 방명록, 게시판이 있습니다. 회원가입이랑 로그인도 됩니다~~
-						Java + 데이터베이스 + JSP-sevlet 으로 만들었습니다.
-						아직까지 게시판은 미완성이에요;;
+						${vo.description }
 						<br><br>
 						<a href="${pageContext.request.contextPath }/guestbook">방명록</a>에 글 남기기<br>
 					</p>
