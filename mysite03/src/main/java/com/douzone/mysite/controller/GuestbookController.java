@@ -35,8 +35,8 @@ public class GuestbookController {
 	
 	@RequestMapping(value="/delete/{no}", method=RequestMethod.POST)
 	public String delete(@PathVariable(name="no")Long no,
-						@PathVariable(name="password")String password) {
-		System.out.println(password+"hello");
+						String password) {
+		// System.out.println(password+"hello");
 		guestbookService.deleteMessage(no, password);
 		return "redirect:/guestbook";
 	}
