@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.douzone.mysite.security.AuthUser;
 import com.douzone.mysite.service.BoardService;
-import com.douzone.mysite.service.SiteService;
 import com.douzone.mysite.vo.BoardVo;
-import com.douzone.mysite.vo.SiteVo;
 import com.douzone.mysite.vo.UserVo;
 
 @Controller
@@ -33,9 +31,22 @@ public class BoardController {
 		int firstPageNo=1;
 		int lastPageNo=totalPage;
 		
+		int nextPageNo=currentPageNo;
+		int prevPageNo=currentPageNo;
+		
+		
 		if(pageno != null) {
 			currentPageNo=Integer.parseInt(pageno);
 		}
+		
+		if(currentPageNo!=firstPageNo) {
+			prevPageNo=currentPageNo-1;
+		}
+		
+		if(currentPageNo!=lastPageNo) {
+			nextPageNo=currentPageNo+1;
+		}
+		
 		int writeException = ((currentPageNo-1)*5+5);
 		
 		List<BoardVo> writelist = list.subList(0,5);
@@ -49,6 +60,8 @@ public class BoardController {
 		// System.out.println(currentPageNo);
 		model.addAttribute("list",writelist);
 		model.addAttribute("currentPageNo",currentPageNo);
+		model.addAttribute("prevPageNo",prevPageNo);
+		model.addAttribute("nextPageNo",nextPageNo);
 		model.addAttribute("firstPageNo",firstPageNo);
 		model.addAttribute("lastPageNo",lastPageNo);
 		

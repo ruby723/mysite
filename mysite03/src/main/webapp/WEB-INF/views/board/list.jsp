@@ -53,7 +53,7 @@
 				<!-- pager 추가 -->
 				<div class="pager">
 					<ul>
-						<li><a href="${pageContext.servletContext.contextPath }/board/p/${currentPageNo-1}">◀</a></li>
+						<li><a href="${pageContext.servletContext.contextPath }/board/p/${prvPageNo}">◀</a></li>
 
 						<c:forEach begin="${firstPageNo }" end="${lastPageNo}" step="1" varStatus="i">
 							<c:choose>
@@ -63,7 +63,7 @@
 							</c:choose>
    							
 						</c:forEach>
-						<li><a href="${pageContext.servletContext.contextPath }/board/p/${currentPageNo+1}">▶</a></li>
+						<li><a href="${pageContext.servletContext.contextPath }/board/p/${nextPageNo}">▶</a></li>
 					</ul>
 				</div>				
 				<!-- pager 추가 -->
