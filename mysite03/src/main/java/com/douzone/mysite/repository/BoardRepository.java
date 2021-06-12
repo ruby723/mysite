@@ -65,4 +65,10 @@ public class BoardRepository {
 		// System.out.println(vo);
 		return count==1;
 	}
+
+	public List<BoardVo> search(String keyword) {
+		
+		List<BoardVo> list = sqlSession.selectList("board.search",keyword);
+		return list;
+	}
 }

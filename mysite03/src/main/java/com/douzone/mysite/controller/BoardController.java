@@ -1,5 +1,6 @@
 package com.douzone.mysite.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,60 +21,112 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	@RequestMapping({"","/p/{no}"})
-	public String index(@PathVariable(name="no",required=false)String pageno,Model model) {
+	@RequestMapping(value={"","/p/{no}"},method= {RequestMethod.GET,RequestMethod.POST})
+	public String index(@PathVariable(name="no",required=false)String pageno,String keyword,Model model) {
 		
-		//paging
-		List<BoardVo> list = boardService.getMessageList();
-		int totalPage = boardService.count();
-		
-		int currentPageNo = 1;
-		int firstPageNo=1;
-		int lastPageNo=totalPage;
-		
-		int nextPageNo=currentPageNo;
-		int prevPageNo=currentPageNo;
-		
-		
-		if(pageno != null) {
-			currentPageNo=Integer.parseInt(pageno);
-		}
-		
-		if(currentPageNo!=firstPageNo) {
-			prevPageNo=currentPageNo-1;
-		}
-		
-		if(currentPageNo!=lastPageNo) {
-			nextPageNo=currentPageNo+1;
-		}
-		
-		int writeException = ((currentPageNo-1)*5+5);
-		
-		List<BoardVo> writelist = list.subList(0,5);
-		
-		if(writeException/5 >= totalPage) {
-			writelist = list.subList((currentPageNo-1)*5,list.size()-1);
-		}else {
-			writelist = list.subList((currentPageNo-1)*5, writeException);
-		}
-		
-		// System.out.println(currentPageNo);
-		model.addAttribute("list",writelist);
-		model.addAttribute("currentPageNo",currentPageNo);
-		model.addAttribute("prevPageNo",prevPageNo);
-		model.addAttribute("nextPageNo",nextPageNo);
-		model.addAttribute("firstPageNo",firstPageNo);
-		model.addAttribute("lastPageNo",lastPageNo);
-		
-		if(currentPageNo>3) {
-			if(currentPageNo+2<totalPage) {
-				lastPageNo=currentPageNo+2;
+		List<BoardVo> list = new ArrayList<>();
+		System.out.println(keyword);
+		if(keyword==null) {
+			list = boardService.getMessageList();
+			int totalPage = boardService.count();
+			
+			int currentPageNo = 1;
+			int firstPageNo=1;
+			int lastPageNo=totalPage;
+			
+			int nextPageNo=currentPageNo;
+			int prevPageNo=currentPageNo;
+			
+			if(pageno != null) {
+				currentPageNo=Integer.parseInt(pageno);
 			}
-			if(lastPageNo - currentPageNo >2) {
-				firstPageNo = currentPageNo - 2;
+			
+			if(currentPageNo!=firstPageNo) {
+				prevPageNo=currentPageNo-1;
+			}
+			
+			if(currentPageNo!=lastPageNo) {
+				nextPageNo=currentPageNo+1;
+			}
+			
+			int writeException = ((currentPageNo-1)*5+5);
+			
+			List<BoardVo> writelist = list.subList(0,5);
+			
+			if(writeException/5 >= totalPage) {
+				writelist = list.subList((currentPageNo-1)*5,list.size()-1);
+			}else {
+				writelist = list.subList((currentPageNo-1)*5, writeException);
+			}
+			
+			// System.out.println(currentPageNo);
+			model.addAttribute("list",writelist);
+			model.addAttribute("currentPageNo",currentPageNo);
+			model.addAttribute("prevPageNo",prevPageNo);
+			model.addAttribute("nextPageNo",nextPageNo);
+			model.addAttribute("firstPageNo",firstPageNo);
+			model.addAttribute("lastPageNo",lastPageNo);
+			
+			if(currentPageNo>3) {
+				if(currentPageNo+2<totalPage) {
+					lastPageNo=currentPageNo+2;
+				}
+				if(lastPageNo - currentPageNo >2) {
+					firstPageNo = currentPageNo - 2;
+				}
+			}
+		} else { // 키워드가 널이 아니면
+			list = boardService.search(keyword);
+			int totalPage = boardService.count();
+			
+			int currentPageNo = 1;
+			int firstPageNo=1;
+			int lastPageNo=totalPage;
+			
+			int nextPageNo=currentPageNo;
+			int prevPageNo=currentPageNo;
+			
+			if(pageno != null) {
+				currentPageNo=Integer.parseInt(pageno);
+			}
+			
+			if(currentPageNo!=firstPageNo) {
+				prevPageNo=currentPageNo-1;
+			}
+			
+			if(currentPageNo!=lastPageNo) {
+				nextPageNo=currentPageNo+1;
+			}
+			
+			int writeException = ((currentPageNo-1)*5+5);
+			
+			List<BoardVo> writelist = list.subList(0,5);
+			
+			if(writeException/5 >= totalPage) {
+				writelist = list.subList((currentPageNo-1)*5,list.size()-1);
+			}else {
+				writelist = list.subList((currentPageNo-1)*5, writeException);
+			}
+			
+			// System.out.println(currentPageNo);
+			model.addAttribute("list",writelist);
+			model.addAttribute("currentPageNo",currentPageNo);
+			model.addAttribute("prevPageNo",prevPageNo);
+			model.addAttribute("nextPageNo",nextPageNo);
+			model.addAttribute("firstPageNo",firstPageNo);
+			model.addAttribute("lastPageNo",lastPageNo);
+			
+			if(currentPageNo>3) {
+				if(currentPageNo+2<totalPage) {
+					lastPageNo=currentPageNo+2;
+				}
+				if(lastPageNo - currentPageNo >2) {
+					firstPageNo = currentPageNo - 2;
+				}
 			}
 		}
 		return "board/list";
+		
 	}
 	
 	@RequestMapping(value = "/delete/{no}",method = RequestMethod.GET)

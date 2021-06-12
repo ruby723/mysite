@@ -55,4 +55,10 @@ public class BoardService {
 	public void updateHit(BoardVo vo) {
 		boardRepository.updateHit(vo);
 	}
+
+	public  List<BoardVo> search(String keyword) {
+		
+		return boardRepository.search(keyword);
+		
+	}
 }

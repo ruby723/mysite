@@ -62,4 +62,10 @@
 		]]>
 	</update>
 	
+	<select id="search" parameterType="string" resultType="boardvo">
+		<![CDATA[
+		select * from board a ,user b where a.user_no=b.no and ( name like '%${_parameter}%' or title like '%${_parameter}%' or contents like '%${_parameter}%')
+		]]>
+	</select>
+
 </mapper>
