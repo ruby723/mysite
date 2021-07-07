@@ -10,6 +10,25 @@
 		]]>
 	</select>
 	
+	<select id = "spafindAll" resultType = "com.douzone.mysite.vo.GuestbookVo">
+		<![CDATA[
+		select no, name, password,date_format(regdate,'%Y-%m-%d'), message
+		from guestbook
+		order by no desc
+		limit 0,3;	
+		]]>
+	</select>
+	
+	<select id = "spafindAll2" resultType = "com.douzone.mysite.vo.GuestbookVo">
+		<![CDATA[
+		select no, name, password,date_format(regdate,'%Y-%m-%d'), message
+		from guestbook
+		where no < #{no}
+		order by no desc
+		limit 0,3;
+		]]>
+	</select>
+	
 	<insert id="insert" parameterType="guestbookvo">
 		<![CDATA[
 		insert into guestbook values (null, #{name}, #{password }, #{message }, now())

@@ -53,4 +53,10 @@ public class GuestbookController {
 //		// 1. logging
 //		return "error/exception"; // 2. 사과 페이지
 //	}
+	
+	@RequestMapping("/spa")
+	public String spaLanding() {
+
+		return "guestbook/spa-landing";
+	}
 }

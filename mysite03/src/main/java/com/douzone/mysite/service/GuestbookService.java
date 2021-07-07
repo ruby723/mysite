@@ -12,21 +12,37 @@ import com.douzone.mysite.vo.GuestbookVo;
 public class GuestbookService {
 	
 	@Autowired
-	GuestbookRepository guestbookRepository; //	의존성 문제 해결
+	private GuestbookRepository guestbookRepository; //	의존성 문제 해결
 	
 	public List<GuestbookVo> getMessageList(){
 		return guestbookRepository.findAll();
 	}
 	
-	public void deleteMessage(Long no, String password) {
+	public List<GuestbookVo> getMessageList(Long no/*기준*/){
+		return guestbookRepository.findAll(no);
+	}
+	
+	public boolean deleteMessage(Long no, String password) {
 		GuestbookVo vo = new GuestbookVo();
 		vo.setNo(no);
 		vo.setPassword(password);
 		
-		guestbookRepository.delete(vo);
+		return guestbookRepository.delete(vo);
 	}
 	
 	public void insertMessage(GuestbookVo vo) {
 		guestbookRepository.insert(vo);
+	}
+
+	public List<GuestbookVo> getSpaMessageList(Long no) {
+		
+		List<GuestbookVo> result = null;
+		
+		if (no == 0) {
+			result = guestbookRepository.spafindAll();
+		} else {
+			result = guestbookRepository.spafindAll(no);
+		}
+		return result;
 	}
 }

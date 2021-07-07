@@ -19,6 +19,11 @@ public class GuestbookRepository {
 		return sqlSession.selectList("guestbook.findAll");
 	}
 	
+	public List<GuestbookVo> findAll(Long no) {
+		
+		return sqlSession.selectList("guestbook.findAllByNo",no);
+	}
+	
 	public boolean delete(GuestbookVo vo) {
 		int count = sqlSession.delete("guestbook.delete",vo);
 		return count ==1;		
@@ -29,5 +34,15 @@ public class GuestbookRepository {
 		int count=sqlSession.insert("guestbook.insert",vo);
 		System.out.println(vo);
 		return count ==1;
+	}
+
+	public List<GuestbookVo> spafindAll() {
+
+		return sqlSession.selectList("guestbook.spafindAll");
+	}
+
+	public List<GuestbookVo> spafindAll(Long no) {
+		
+		return sqlSession.selectList("guestbook.spafindAll2",no);
 	}
 }
