@@ -57,20 +57,25 @@
 				"</li>";
 				
 				$("#list-guestbook").append(html);
+				console.log("fetch");
 			});
 			}
 		});
 	}
-
  
  $(function(){
+	 var event = true;
+	 
 	 $(window).scroll(function(){
 			var $window = $(this);
 			var windowHeight = $window.height();
 			var scrollTop = $window.scrollTop();
 			var documentHeight = $(document).height();
-			if(scrollTop + windowHeight + 10 > documentHeight){
+			if(scrollTop + windowHeight + 10 > documentHeight && event==true){
 				fetch();
+				event = false;
+			} else if(scrollTop +30 > (documentHeight/2)){
+				event = true;
 			}
 		});
 	

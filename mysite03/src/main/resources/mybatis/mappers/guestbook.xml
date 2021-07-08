@@ -15,7 +15,7 @@
 		select no, name, password,date_format(regdate,'%Y-%m-%d'), message
 		from guestbook
 		order by no desc
-		limit 0,3;	
+		limit 0,5;	
 		]]>
 	</select>
 	
